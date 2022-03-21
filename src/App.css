@@ -22,8 +22,16 @@ body, html {
     height: 50px;
     border-bottom: 1px solid grey;
 }
-.top > i {
-    color: gray;
+.top .icon-left {
+    float: left;
+    margin-left: 2rem;
+    color: grey;
+    font-size: 1.3rem;
+    line-height: 50px;
+    cursor: no-drop;
+}
+.top .icon-right {
+    color: grey;
     line-height: 50px;
     font-size: 1.3rem;
     float: right;

@@ -38,7 +38,6 @@ function App() {
             <div className='container'>
                 {show && <textarea autoFocus value={markdown} className="markdown" onChange={(e) => setMarkDown(e.target.value)} />}
                 <div className={`show ${!show && 'extend'}`}>
-                    <p>default language: JavaScript</p>
                     <ReactMarkdown 
                         children={markdown} 
                         remarkPlugins={[remarkGfm]} 
@@ -58,7 +57,7 @@ function App() {
                                 */
                                 return( 
                                     <Component 
-                                        language={match ? match[1]: 'javascript'}
+                                        language={match ? match[1]: ''}
                                         value={children}
                                         theme={docco}
                                     />)

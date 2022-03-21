@@ -6,7 +6,7 @@ import { BsLayoutSplit } from 'react-icons/bs'
 import { useEffect } from 'react'
 import remarkGfm from 'remark-gfm'
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-
+import { RiMarkdownLine } from 'react-icons/ri'
 import Component from './Component'
 
 function App() {
@@ -20,14 +20,16 @@ function App() {
     return (
         <div className="app">
             <div className='top'>
-                <i className="icon" onClick={() => setShow(!show)}>
+                <i className='icon-left'>
+                    <RiMarkdownLine />
+                </i>
+                <i className="icon-right" onClick={() => setShow(!show)}>
                     <BsLayoutSplit />
                 </i>
             </div>
             <div className='container'>
                 {show && <textarea autoFocus value={markdown} className="markdown" onChange={(e) => setMarkDown(e.target.value)} />}
                 <div className={`show ${!show && 'extend'}`}>
-                    <p>default language: JavaScript</p>
                     <ReactMarkdown 
                         children={markdown} 
                         remarkPlugins={[remarkGfm]} 
@@ -47,7 +49,7 @@ function App() {
                                 */
                                 return( 
                                     <Component 
-                                        language={match ? match[1]: 'javascript'}
+                                        language={match ? match[1]: ''}
                                         value={children}
                                         theme={docco}
                                     />)
