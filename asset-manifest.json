@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/MarkDown-clone/static/css/main.c23756e9.css",
-    "main.js": "/MarkDown-clone/static/js/main.595577a8.js",
+    "main.css": "/MarkDown-clone/static/css/main.461aff77.css",
+    "main.js": "/MarkDown-clone/static/js/main.896eb133.js",
     "index.html": "/MarkDown-clone/index.html",
-    "main.c23756e9.css.map": "/MarkDown-clone/static/css/main.c23756e9.css.map",
-    "main.595577a8.js.map": "/MarkDown-clone/static/js/main.595577a8.js.map"
+    "main.461aff77.css.map": "/MarkDown-clone/static/css/main.461aff77.css.map",
+    "main.896eb133.js.map": "/MarkDown-clone/static/js/main.896eb133.js.map"
   },
   "entrypoints": [
-    "static/css/main.c23756e9.css",
-    "static/js/main.595577a8.js"
+    "static/css/main.461aff77.css",
+    "static/js/main.896eb133.js"
   ]
 }
