@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MarkDown-clone/static/css/main.c23756e9.css",
+    "main.js": "/MarkDown-clone/static/js/main.595577a8.js",
+    "index.html": "/MarkDown-clone/index.html",
+    "main.c23756e9.css.map": "/MarkDown-clone/static/css/main.c23756e9.css.map",
+    "main.595577a8.js.map": "/MarkDown-clone/static/js/main.595577a8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c23756e9.css",
+    "static/js/main.595577a8.js"
+  ]
+}
