@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# MarkDown-clone
+* React.js
+* [react-markdown](https://github.com/remarkjs/react-markdown)
+* [react-syntax-highlight](https://github.com/react-syntax-highlighter/react-syntax-highlighter)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> 需要密切注意react-markdown的API,由於Youtube上的課程API是舊版使用renderers={ { } },新版則是components={ { }}
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+```jsx
+//App.js
+import React from 'react'
+import './app.css'
+import ReactMarkdown from 'react-markdown'
+import { useState } from 'react'
+import { BsLayoutSplit } from 'react-icons/bs'
+import { useEffect } from 'react'
+import remarkGfm from 'remark-gfm'
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-### `npm start`
+import Component from './Component'
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+function App() {
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    const [markdown, setMarkDown] = useState(JSON.parse(localStorage.getItem('markdown'))) 
+    const [show, setShow] = useState(false)
+    useEffect(() => {
+        localStorage.setItem('markdown', JSON.stringify(markdown))
+    }, [markdown])
 
-### `npm test`
+    return (
+        <div className="app">
+            <div className='top'>
+                <i className="icon" onClick={() => setShow(!show)}>
+                    <BsLayoutSplit />
+                </i>
+            </div>
+            <div className='container'>
+                {show && <textarea autoFocus value={markdown} className="markdown" onChange={(e) => setMarkDown(e.target.value)} />}
+                <div className={`show ${!show && 'extend'}`}>
+                    <p>default language: JavaScript</p>
+                    <ReactMarkdown 
+                        children={markdown} 
+                        remarkPlugins={[remarkGfm]} 
+                        components={{
+                            code({children, className, inline}) {
+                                const match = /language-(\w+)/.exec(className)
+                                console.log(`match:${match}, \nclassName: ${className}`)
+                                /*
+                                    ``` is empty
+                                    match:null, 
+                                    className: undefined,
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+                                    ```is c
+                                    match:language-c,c, 
+                                    className: language-c
 
-### `npm run build`
+                                */
+                                return( 
+                                    <Component 
+                                        language={match ? match[1]: 'javascript'}
+                                        value={children}
+                                        theme={docco}
+                                    />)
+                            }
+                        }}
+                    />
+                </div>
+            </div>
+        </div>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    )
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export default App
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```jsx
+//Component.js
+import React from 'react'
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+function Component({ value, language, theme}) {
+    return (
+        <SyntaxHighlighter 
+            language={language}
+            style={theme}
+            >
+            {value} 
+        </SyntaxHighlighter>
+    )
+}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default Component
+```

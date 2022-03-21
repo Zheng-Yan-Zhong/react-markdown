@@ -35,6 +35,16 @@ function App() {
                             code({children, className, inline}) {
                                 const match = /language-(\w+)/.exec(className)
                                 console.log(`match:${match}, \nclassName: ${className}`)
+                                /*
+                                    ``` is empty
+                                    match:null, 
+                                    className: undefined,
+
+                                    ```is c
+                                    match:language-c,c, 
+                                    className: language-c
+
+                                */
                                 return( 
                                     <Component 
                                         language={match ? match[1]: 'javascript'}
