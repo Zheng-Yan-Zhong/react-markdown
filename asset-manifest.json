@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/MarkDown-clone/static/css/main.461aff77.css",
-    "main.js": "/MarkDown-clone/static/js/main.896eb133.js",
-    "index.html": "/MarkDown-clone/index.html",
-    "main.461aff77.css.map": "/MarkDown-clone/static/css/main.461aff77.css.map",
-    "main.896eb133.js.map": "/MarkDown-clone/static/js/main.896eb133.js.map"
+    "main.css": "/react-markdown/static/css/main.461aff77.css",
+    "main.js": "/react-markdown/static/js/main.896eb133.js",
+    "index.html": "/react-markdown/index.html",
+    "main.461aff77.css.map": "/react-markdown/static/css/main.461aff77.css.map",
+    "main.896eb133.js.map": "/react-markdown/static/js/main.896eb133.js.map"
   },
   "entrypoints": [
     "static/css/main.461aff77.css",
